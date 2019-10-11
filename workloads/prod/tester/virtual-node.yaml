@@ -1,0 +1,21 @@
+apiVersion: appmesh.k8s.aws/v1beta1
+kind: VirtualNode
+metadata:
+  name: flagger-loadtester
+  namespace: prod
+  labels:
+    app: flagger-loadtester
+spec:
+  meshName: appmesh-1
+  listeners:
+    - portMapping:
+        port: 444
+        protocol: http
+  serviceDiscovery:
+    dns:
+      hostName: flagger-loadtester.prod
+  backends:
+    - virtualService:
+        virtualServiceName: podinfo.prod
+    - virtualService:
+        virtualServiceName: podinfo-canary.prod
