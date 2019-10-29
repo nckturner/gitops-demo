@@ -1,0 +1,63 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: helm
+    name: tiller
+  name: tiller-deploy
+  namespace: flux
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: helm
+        name: tiller
+    spec:
+      automountServiceAccountToken: true
+      containers:
+      - env:
+        - name: TILLER_NAMESPACE
+          value: flux
+        - name: TILLER_HISTORY_MAX
+          value: "10"
+        - name: TILLER_TLS_VERIFY
+          value: "1"
+        - name: TILLER_TLS_ENABLE
+          value: "1"
+        - name: TILLER_TLS_CERTS
+          value: /etc/certs
+        image: gcr.io/kubernetes-helm/tiller:v2.14.3
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /liveness
+            port: 44135
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+        name: tiller
+        ports:
+        - containerPort: 44134
+          name: tiller
+        - containerPort: 44135
+          name: http
+        readinessProbe:
+          httpGet:
+            path: /readiness
+            port: 44135
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+        resources: {}
+        volumeMounts:
+        - mountPath: /etc/certs
+          name: tiller-certs
+          readOnly: true
+      serviceAccountName: tiller
+      volumes:
+      - name: tiller-certs
+        secret:
+          secretName: tiller-secret
+status: {}
