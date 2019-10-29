@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    appmesh.k8s.aws/sidecarInjectorWebhook: enabled
-  annotations:
-    fluxcd.io/ignore: "false"
-  name: prod
