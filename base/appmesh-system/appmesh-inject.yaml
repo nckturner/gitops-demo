@@ -14,3 +14,8 @@ spec:
       create: true
       name: "appmesh"
       discovery: dns
+    tracing:
+      enabled: true
+      provider: jaeger
+      address: appmesh-jaeger.appmesh-system
+      port: 9411
