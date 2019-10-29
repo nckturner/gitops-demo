@@ -65,9 +65,9 @@ spec:
               cpu: 10m
               memory: 64Mi
           volumeMounts:
-            - name: config
+            - name: envoy-config
               mountPath: /config
       volumes:
-        - name: config
+        - name: envoy-config
           configMap:
             name: ingress
