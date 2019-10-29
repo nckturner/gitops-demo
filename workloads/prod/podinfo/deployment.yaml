@@ -21,7 +21,7 @@ spec:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "9898"
-        revision: "test.1"
+        revision: "test.0"
       labels:
         app: podinfo
     spec:
