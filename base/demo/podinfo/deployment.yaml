@@ -22,7 +22,7 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/port: "9898"
         revision: "test.3"
-        appmesh.k8s.aws/virtualNode: does-not-exist
+        #appmesh.k8s.aws/virtualNode: does-not-exist
       labels:
         app: podinfo
     spec:
