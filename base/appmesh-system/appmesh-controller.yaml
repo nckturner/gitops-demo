@@ -9,3 +9,7 @@ spec:
     git: https://github.com/aws/eks-charts
     ref: master
     path: stable/appmesh-controller
+  values:
+    image:
+      repository: 352684330888.dkr.ecr.us-west-2.amazonaws.com/amazon/app-mesh-controller
+      tag: cache-vn
