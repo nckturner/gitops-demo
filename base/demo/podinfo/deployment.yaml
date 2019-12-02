@@ -21,7 +21,7 @@ spec:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "9898"
-        revision: "test.3"
+        revision: "test.0"
         #appmesh.k8s.aws/virtualNode: does-not-exist
       labels:
         app: podinfo
@@ -34,7 +34,7 @@ spec:
           - name: PODINFO_UI_LOGO
             value: https://raw.githubusercontent.com/weaveworks/eks-appmesh-profile/website/logo/amazon-eks.png
           - name: PODINFO_UI_COLOR
-            value: red
+            value: blue
         ports:
         - containerPort: 9898
           name: http
